@@ -31,7 +31,7 @@ And sometimes we even need __logic__ in our templates.  Something like Handlebar
 </div>
 ```
 
-But once we start demanding something like function composition to help create/piece together larger templates, we may start feeling weird about inventing our own fully-capable language around HTML.
+But once we start demanding something like function composition to help create/piece together larger templates, we may start feeling weird about inventing our own fully-capable language around HTML.  Perhaps there is a better way.
 
 ## Embracing the data
 
