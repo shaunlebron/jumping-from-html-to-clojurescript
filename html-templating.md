@@ -1,4 +1,4 @@
-## The problem with HTML templating
+## The evolution of HTML templating (or why you should be using Hiccups)
 
 HTML is just a __tree__ of elements. For example:
 
@@ -33,7 +33,33 @@ And sometimes we even need __logic__ in our templates.  Something like Handlebar
 
 But once we start demanding something like function composition to help create/piece together larger templates, we may start feeling weird about inventing our own fully-capable language around HTML.  Perhaps there is a better way.
 
-## Embracing the data
+## Embracing a real language
+
+The __React__ team from Facebook recognized the awkwardness of using a language on top of HTML when creating sufficiently complex templates, so they decided to generate HTML in Javascript, which was controversial...
+
+What they gained with the full power of JS, they lost in brevity:
+
+```javascript
+React.render(
+  React.createComponent("div", null,
+    React.createComponent("img", {src: imageSource}),
+    React.createComponent("span", null, message)));
+```
+
+They added an __optional sugar__ on top of JS called JSX, which allows you to use HTML with Mustache-like expressions inside them.
+
+```javascript
+React.render(
+  <div>
+    <img src={imageSource} />
+    <span>{message}</span>
+  </div>);
+```
+
+There is currently a 50/50 mindshare among using JSX versus the usual JS calls.
+
+
+## Could it be better?
 
 Let's suppose we want to represent HTML as a data structure in some existing programming language instead of grafting one onto HTML.
 
