@@ -1,5 +1,8 @@
 # HTML templating - a problem and solution
 
+We start with a simple idea of HTML templating and hope to walk you to a
+surprising idea.
+
 ### Extending HTML for templating
 
 The following is a simple HTML example:
@@ -11,8 +14,8 @@ The following is a simple HTML example:
 </div>
 ```
 
-Sometimes, we want to inject __dynamic values__ into HTML.  This is commonly
-solved using a templating language like Mustache.
+We can inject __dynamic values__ into HTML using a templating language like
+Handlebars.
 
 ```handlebars
 <div>
@@ -21,8 +24,7 @@ solved using a templating language like Mustache.
 </div>
 ```
 
-If we need conditional/generative __logic__ in our templates, we can use
-something like Handlebar syntax:
+If we need conditional/generative __logic__:
 
 ```handlebars
 <div>
@@ -35,19 +37,21 @@ something like Handlebar syntax:
 </div>
 ```
 
-Once templates get large, we start demanding more language features in our
-templates.  For example, Handlebars allows [template
+When template size and complexity grows, we start demanding more language
+features in our templates, like [template
 chunks](http://handlebarsjs.com/#helpers) to allow a form of function
-composition.  But the point is that we can continue adding custom syntax to our
-templates, but we may start feeling weird about inventing our own fully-capable
-language around HTML.  Perhaps there is a better way.
+composition.
+
+We can continue adding custom syntax to our templates, but we may start feeling
+weird about inventing our own fully-capable language around HTML.  Perhaps
+there is a better way.
 
 ### Embedding HTML in JS
 
 The __React__ team from Facebook recognized the awkwardness of using a language
-on top of HTML when creating sufficiently complex templates, so they made a
-controversial move to generate HTML inside of Javascript (among other reasons
-related to virtual DOM construction):
+on top of HTML for sufficiently complex templates, so they tried generating
+HTML _inside_ of Javascript to benefit from a full language (among other
+reasons related to virtual DOM construction):
 
 ```javascript
 React.render(
@@ -56,10 +60,9 @@ React.render(
     React.createComponent("span", null, message)));
 ```
 
-What they gained with the full power of JS, they lost in brevity.  So they
-added an __optional sugar__ on top of JS called JSX, essentially allowing us to
-write HTML inside JS. (JS expressions are also allowed in the HTML tags by
-using curly braces.)
+For brevity, they added an __optional sugar__ on top of JS called JSX,
+essentially allowing us to use HTML tags inside JS. (JS expressions are also
+allowed in the HTML tags by using curly braces.)
 
 ```javascript
 // this desugars into the previous code example
@@ -95,9 +98,9 @@ React.render(
   </div>);
 ```
 
-[JSX Control Statements](https://github.com/valtech-au/jsx-control-statements)
-offer simpler syntax for the previous example by overriding the nature of a tag
-in JSX:
+Alternatively, we can use [JSX Control
+Statements](https://github.com/valtech-au/jsx-control-statements) which
+override the nature of a JSX tag:
 
 ```javascript
 React.render(
@@ -111,9 +114,9 @@ React.render(
   </div>);
 ```
 
-__To review__, we gained the full power of a real language by _embedding_ HTML
-inside of Javascript.  But yet again, we are forced to add additional syntax to
-regain the brevity of traditional templates.  Perhaps there is a better way.
+So, we gained the full power of a real language by _embedding_ HTML inside of
+Javascript.  But we find ourselves again adding more syntax, this time for
+brevity.  Perhaps there is already a language to meet these needs.
 
 ### From first principles to simplicity
 
@@ -138,8 +141,7 @@ bulleted list.
 
 ----
 
-Trees are often represented as nested lists, so let's imagine what it would
-look like as a literal list in JSON form:
+Trees are often represented as nested lists, so let's see it in JSON:
 
 ```json
 ["div",
@@ -149,17 +151,19 @@ look like as a literal list in JSON form:
 ]
 ```
 
-First element of a list is the tag name.  Second element can be a map of tag
-attributes.  Rest of the elements are child tags.
+We assume the first element of a list is the tag name.  Second element can be a
+map of tag attributes.  Rest of the elements are child tags.
 
-Can we add logic to this somehow?  Going the way of Javascript (e.g. ternaary
-operator and `map`) suffers from the same problems we saw in the previous
-section.  Perhaps there is a better way.
+Can we add __logic syntax__ to this somehow?  Going the way of Javascript (e.g.
+ternary operator and `map`) suffers from the same problems we saw in the
+previous section-- a lack of brevity.  And we're not trying to invent new
+syntax.
 
 #### JSON+logic = ?
 
-Actually, the simplest thing we can do is to use a language that is __sort of
-like JSON__.  Notice the lack of commas and colons:
+There already exists a general purpose language that is like JSON, but with
+logic as well.  Let's first see the data.  Notice the lack of commas and
+colons:
 
 ```clojure
 ["div"
@@ -169,8 +173,7 @@ like JSON__.  Notice the lack of commas and colons:
 ]
 ```
 
-This language actually allows us to embed logic in our data.  In fact, logic is
-represented as a new kind of list:
+To see the logic, let's add a conditional around our `img`:
 
 ```clojure
 ["div"
@@ -183,12 +186,19 @@ represented as a new kind of list:
 ```
 
 Notice we have inserted the `if` conditional as a list with parens.  You can
-probably guess what it does, but you might be confused at why the distinction
-between logic and data has been blurred.  Well, this is already what Handlebars
-and JSX Control Statements are doing; they create custom data tags for logic.
-Handlebars adds the `{{#each}} {{/each}}` tags, and JSX Control Statements
-creates adds the `<For> </For>` tags; logic as data.  Likewise, we're using an
-`if` list.
+probably guess what it does, but you might still be confused.  Why is the `if`
+logic represented as a list?
+
+This is actually __very similar to what Handlebars and JSX Control Statements
+are doing__; they represent logic as data.  For example, to represent
+conditionals, Handlebars has the `{{#if}} {{/if}}` tags, and JSX Control
+Statements has the `<If> </If>` tags.  And we already saw how a tag is simply a
+list.  Likewise, we're using an `if` list to represent a conditional.
+
+The only difference is that we didn't have to invent the `if` list syntax.  It
+was actually here all along in the language, with brevity and all.
+
+#### Clojure
 
 This language is called Clojure.  Its syntax is a marriage of Lisp and JSON
 (sort of).  All paren lists are interpreted as code, with the first argument
@@ -206,10 +216,29 @@ with a `for` loop (simplified):
 ]
 ```
 
-Clojure is a general-purpose language that embraces the fundamental nature of
-code as evaluated data, and a solution to simple HTML-templating just falls out
-of that idea.  If this piques your interest, you can gain a more comprehensive
-understanding of it in the [ClojureScript Syntax in 15
+And if you're wondering how to turn this into an HTML markup string or a React
+component tree, there are different `html` functions for doing that.  Here's
+how you'd use it.  Remember, a paren list is just a function call:
+
+```clojure
+(html
+  ["div"
+    (if imageSource
+      ["img" {"src" imageSource}]
+    )
+    (for m messages
+      ["span" m]
+    )
+  ]
+)
+```
+
+Clojure is not built specifically for HTML-templating, of course.  Rather, it
+is a general-purpose language that embraces the fundamental nature of code as
+evaluated data, and __simple HTML-templating just falls out of that idea__.
+
+If this piques your interest, you can gain a more comprehensive understanding
+of it in the [ClojureScript Syntax in 15
 minutes](https://github.com/shaunlebron/ClojureScript-Syntax-in-15-minutes)
 guide.
 
