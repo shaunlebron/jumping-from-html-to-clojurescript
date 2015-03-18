@@ -116,6 +116,7 @@ Let's go back to our simple HTML example:
 
 This is fundamentally just a tree of data, which we can represent with a nested bulleted list.  (Each element has a list of attributes and a list of children):
 
+```
 - __div__
   - attributes: none
   - children:
@@ -127,4 +128,4 @@ This is fundamentally just a tree of data, which we can represent with a nested 
       - attributes: none
       - children:
         - "Hello"
-
+```
