@@ -117,3 +117,12 @@ This is fundamentally just a tree of data, which we can represent with a nested 
   - __span__
     - "Hello"
 
+So it doesn't seem unreasonable to represent this as a nested JSON arrays. (The JSON map is used for attributes).
+
+```json
+["div"
+  ["img"
+    {src "hi.jpg"}]
+  ["span"
+    "Hello"]]
+```
