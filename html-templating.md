@@ -11,7 +11,8 @@ The following is a simple HTML example:
 </div>
 ```
 
-Sometimes, we want to inject __dynamic values__ into HTML.  This is commonly solved using a templating language like Mustache.
+Sometimes, we want to inject __dynamic values__ into HTML.  This is commonly
+solved using a templating language like Mustache.
 
 ```handlebars
 <div>
@@ -20,7 +21,8 @@ Sometimes, we want to inject __dynamic values__ into HTML.  This is commonly sol
 </div>
 ```
 
-If we need conditional/generative __logic__ in our templates, we can use something like Handlebar syntax:
+If we need conditional/generative __logic__ in our templates, we can use
+something like Handlebar syntax:
 
 ```handlebars
 <div>
@@ -33,11 +35,19 @@ If we need conditional/generative __logic__ in our templates, we can use somethi
 </div>
 ```
 
-Once templates get large, we start demanding more language features in our templates.  For example, Handlebars allows [template chunks](http://handlebarsjs.com/#helpers) to allow a form of function composition.  But the point is that we can continue adding custom syntax to our templates, but we may start feeling weird about inventing our own fully-capable language around HTML.  Perhaps there is a better way.
+Once templates get large, we start demanding more language features in our
+templates.  For example, Handlebars allows [template
+chunks](http://handlebarsjs.com/#helpers) to allow a form of function
+composition.  But the point is that we can continue adding custom syntax to our
+templates, but we may start feeling weird about inventing our own fully-capable
+language around HTML.  Perhaps there is a better way.
 
 ### Embedding HTML in JS
 
-The __React__ team from Facebook recognized the awkwardness of using a language on top of HTML when creating sufficiently complex templates, so they made a controversial move to generate HTML inside of Javascript (among other reasons related to virtual DOM construction):
+The __React__ team from Facebook recognized the awkwardness of using a language
+on top of HTML when creating sufficiently complex templates, so they made a
+controversial move to generate HTML inside of Javascript (among other reasons
+related to virtual DOM construction):
 
 ```javascript
 React.render(
@@ -46,7 +56,10 @@ React.render(
     React.createComponent("span", null, message)));
 ```
 
-What they gained with the full power of JS, they lost in brevity.  So they added an __optional sugar__ on top of JS called JSX, essentially allowing us to write HTML inside JS. (JS expressions are also allowed in the HTML tags by using curly braces.)
+What they gained with the full power of JS, they lost in brevity.  So they
+added an __optional sugar__ on top of JS called JSX, essentially allowing us to
+write HTML inside JS. (JS expressions are also allowed in the HTML tags by
+using curly braces.)
 
 ```javascript
 // this desugars into the previous code example
@@ -71,7 +84,8 @@ React.render(
   </div>);
 ```
 
-And we can use Javascript's ternary expressions for conditionals and the native `map` function for sequence generation:
+And we can use Javascript's ternary expressions for conditionals and the native
+`map` function for sequence generation:
 
 ```javascript
 React.render(
@@ -81,7 +95,9 @@ React.render(
   </div>);
 ```
 
-[JSX Control Statements](https://github.com/valtech-au/jsx-control-statements) offer simpler syntax for the previous example by overriding the nature of a tag in JSX:
+[JSX Control Statements](https://github.com/valtech-au/jsx-control-statements)
+offer simpler syntax for the previous example by overriding the nature of a tag
+in JSX:
 
 ```javascript
 React.render(
@@ -95,7 +111,9 @@ React.render(
   </div>);
 ```
 
-__To review__, we gained the full power of a real language by _embedding_ HTML inside of Javascript.  But yet again, we are forced to add additional syntax to regain the brevity of traditional templates.  Perhaps there is a better way.
+__To review__, we gained the full power of a real language by _embedding_ HTML
+inside of Javascript.  But yet again, we are forced to add additional syntax to
+regain the brevity of traditional templates.  Perhaps there is a better way.
 
 ### From first principles to simplicity
 
@@ -108,7 +126,8 @@ Let's go back to our simple HTML example:
 </div>
 ```
 
-This is fundamentally just a tree of data, which we can represent with a nested bulleted list.
+This is fundamentally just a tree of data, which we can represent with a nested
+bulleted list.
 
 ----
 
@@ -119,7 +138,8 @@ This is fundamentally just a tree of data, which we can represent with a nested 
 
 ----
 
-Incidentally, trees are often represented as nested lists in computer science, so let's imagine what it would look like as literal lists in JSON form:
+Incidentally, trees are often represented as nested lists in computer science,
+so let's imagine what it would look like as literal lists in JSON form:
 
 ```json
 ["div",
@@ -129,13 +149,17 @@ Incidentally, trees are often represented as nested lists in computer science, s
 ]
 ```
 
-The first element of every list is the name of the tag.  The second element can be a map of attributes for that tag.  The rest of the elements are child tags.
+The first element of every list is the name of the tag.  The second element can
+be a map of attributes for that tag.  The rest of the elements are child tags.
 
-Can we add logic to it somehow?  Using Javascript suffers from the same problems we saw in the previous section-- the awkwardness of the ternary operator and `map` function.  Perhaps there is a better way.
+Can we add logic to it somehow?  Using Javascript suffers from the same
+problems we saw in the previous section-- the awkwardness of the ternary
+operator and `map` function.  Perhaps there is a better way.
 
 #### JSON+logic = ?
 
-Actually, the simplest thing we can do is to use a language that is __sort of like JSON__.  Notice the lack of commas and colons:
+Actually, the simplest thing we can do is to use a language that is __sort of
+like JSON__.  Notice the lack of commas and colons:
 
 ```clojure
 ["div"
@@ -145,7 +169,8 @@ Actually, the simplest thing we can do is to use a language that is __sort of li
 ]
 ```
 
-This language actually allows us to embed logic in our data.  In fact, logic is represented as a new kind of list:
+This language actually allows us to embed logic in our data.  In fact, logic is
+represented as a new kind of list:
 
 ```clojure
 ["div"
@@ -157,9 +182,18 @@ This language actually allows us to embed logic in our data.  In fact, logic is 
 ]
 ```
 
-Notice we have inserted the `if` conditional as a list with parens.  You can probably guess what it does, but you might be confused at why the distinction between logic and data has been blurred.  Well, this is already what Handlebars and JSX Control Statements are doing; they create custom data tags for logic.  Handlebars adds the `{{#each}} {{/each}}` tags, and JSX Control Statements creates adds the `<For> </For>` tags; logic as data.  Likewise, we're using an `if` list.
+Notice we have inserted the `if` conditional as a list with parens.  You can
+probably guess what it does, but you might be confused at why the distinction
+between logic and data has been blurred.  Well, this is already what Handlebars
+and JSX Control Statements are doing; they create custom data tags for logic.
+Handlebars adds the `{{#each}} {{/each}}` tags, and JSX Control Statements
+creates adds the `<For> </For>` tags; logic as data.  Likewise, we're using an
+`if` list.
 
-This language is called Clojure.  Its syntax is a marriage of Lisp and JSON (sort of).  All paren lists are interpreted as code, with the first argument being the function name, and the rest as arguments.  Let's complete our example with a `for` loop (simplified):
+This language is called Clojure.  Its syntax is a marriage of Lisp and JSON
+(sort of).  All paren lists are interpreted as code, with the first argument
+being the function name, and the rest as arguments.  Let's complete our example
+with a `for` loop (simplified):
 
 ```clojure
 ["div"
@@ -172,5 +206,10 @@ This language is called Clojure.  Its syntax is a marriage of Lisp and JSON (sor
 ]
 ```
 
-Clojure is a general-purpose language that embraces the fundamental nature of code as evaluated data, and a solution to simple HTML-templating just falls out of that idea.  If this piques your interest, you can gain a more comprehensive understanding of it in the [ClojureScript Syntax in 15 minutes](https://github.com/shaunlebron/ClojureScript-Syntax-in-15-minutes) guide.
+Clojure is a general-purpose language that embraces the fundamental nature of
+code as evaluated data, and a solution to simple HTML-templating just falls out
+of that idea.  If this piques your interest, you can gain a more comprehensive
+understanding of it in the [ClojureScript Syntax in 15
+minutes](https://github.com/shaunlebron/ClojureScript-Syntax-in-15-minutes)
+guide.
 
