@@ -157,7 +157,7 @@ This language actually allows us to embed logic in our data.  In fact, logic is 
 
 Notice we have inserted the `if` conditional as a list with parens.  You can probably guess what it does, but you might be confused at why the distinction between logic and data has been blurred.  Well, this is already what Handlebars and JSX Control Statements are doing; they create custom data tags for logic.  Handlebars adds the `{{#each}} {{/each}}` tags, and JSX Control Statements creates adds the `<For> </For>` tags; logic as data.  Likewise, we're using an `if` list.
 
-This language is called Clojure.  Its syntax is a marriage of Lisp and JSON.  All paren lists are interpreted as code, with the first argument being the function name, and the rest as arguments.  Let's complete our example with a `for` loop:
+This language is called Clojure.  Its syntax is a marriage of Lisp and JSON (sort of).  All paren lists are interpreted as code, with the first argument being the function name, and the rest as arguments.  Let's complete our example with a `for` loop:
 
 ```clojure
 ["div"
