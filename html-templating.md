@@ -131,7 +131,9 @@ Incidentally, trees are often represented as nested lists in computer science, s
 
 The first element of every list is the name of the tag.  The second element can be a map of attributes for that tag.  The rest of the elements are child tags.
 
-This is a fundamental representation of HTML using the most popular literal data syntax in programming languages today.  Can we add conditional/generative logic to it somehow like we did in the previous sections? Using Javascript suffer the same problems as seen in the previous section with the ternary operator and `map` function.  Is there a better way?
+This is a fundamental representation of HTML using the most popular literal data syntax in programming languages today.  Can we add conditional/generative logic to it somehow like we did in the previous sections? Using Javascript suffers from the same problems we saw in the previous section-- the awkwardness of the ternary operator and `map` function.  Is there a better way?
+
+----
 
 Actually, the simplest thing we can do is to use a language that is __sort of like JSON__.  Notice the only difference is the lack of commas and colons:
 
