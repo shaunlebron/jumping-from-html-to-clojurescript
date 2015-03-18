@@ -52,7 +52,7 @@ React.render(
     React.createComponent("span", null, message)));
 ```
 
-What they gained with the full power of JS, they lost in brevity.  So they added an __optional sugar__ on top of JS called JSX, which allows you to construct a virtual DOM more easily.  It essentially allows us to write HTML inside JS. (JS expressions are also allowed in the HTML tags by using curly braces.)
+What they gained with the full power of JS, they lost in brevity.  So they added an __optional sugar__ on top of JS called JSX, essentially allowing us to write HTML inside JS. (JS expressions are also allowed in the HTML tags by using curly braces.)
 
 ```javascript
 // this desugars into the previous code example
@@ -63,7 +63,21 @@ React.render(
   </div>);
 ```
 
-We can use Javascript's ternary expressions for conditionals and the native `map` function for sequence generation:
+We get function composition without any special syntax since we're in JS:
+
+```javascript
+function myImage(imageSource) {
+   return <img src={imageSource} />;
+}
+
+React.render(
+  <div>
+    {myImage(imageSource)}
+    <span>{message}</span>
+  </div>);
+```
+
+And we can use Javascript's ternary expressions for conditionals and the native `map` function for sequence generation:
 
 ```javascript
 React.render(
@@ -73,7 +87,7 @@ React.render(
   </div>);
 ```
 
-[JSX Control Statements](https://github.com/valtech-au/jsx-control-statements) offer simpler syntax by overriding the nature of a tag in JSX:
+[JSX Control Statements](https://github.com/valtech-au/jsx-control-statements) offer simpler syntax for the previous example by overriding the nature of a tag in JSX:
 
 ```javascript
 React.render(
@@ -86,6 +100,8 @@ React.render(
     </For>
   </div>);
 ```
+
+To review, we left the idea of _extending_ HTML with a templating language (e.g. Handlebars) so that we could gain the full power of a real language by _embedding_ HTML inside of one (e.g. Javascript).  But even then, we added two additional layers on top of it to regain the brevity of traditional templates (e.g. JSX and JSX Control Statements).  Perhaps there is a better way.
 
 ## Returning to fundamentals to find simpler syntax
 
