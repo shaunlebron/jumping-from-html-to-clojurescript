@@ -101,7 +101,7 @@ React.render(
   </div>);
 ```
 
-__To review__, we gained the full power of a real language by _embedding_ HTML inside of Javascript.  But yet again, we are forced to add additional syntax to regain the brevity of traditional templates.  But perhaps there is a better way.
+__To review__, we gained the full power of a real language by _embedding_ HTML inside of Javascript.  But yet again, we are forced to add additional syntax to regain the brevity of traditional templates.  Perhaps there is a better way.
 
 ## Returning to fundamentals to find simpler syntax
 
