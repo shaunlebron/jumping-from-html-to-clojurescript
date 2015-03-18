@@ -101,7 +101,7 @@ React.render(
   </div>);
 ```
 
-To review, we left the idea of _extending_ HTML with a templating language (e.g. Handlebars) so that we could gain the full power of a real language by _embedding_ HTML inside of one (e.g. Javascript).  But even then, we added two additional layers on top of it to regain the brevity of traditional templates (e.g. JSX and JSX Control Statements).  Perhaps there is a better way.
+To review, we gained the full power of a real language by _embedding_ HTML inside of Javascript.  But even then, we had to add an additional layer on top of it to regain the brevity of traditional templates.  But perhaps there is a better way...
 
 ## Returning to fundamentals to find simpler syntax
 
