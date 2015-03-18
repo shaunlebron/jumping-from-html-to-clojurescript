@@ -1,6 +1,6 @@
 ## The evolution of HTML templating (or why you should be using Hiccups)
 
-HTML is just a __tree__ of elements. For example:
+The following is a simple HTML example:
 
 ```html
 <div>
@@ -18,7 +18,7 @@ Sometimes, we want to inject __dynamic values__ into HTML.  This is commonly sol
 </div>
 ```
 
-And sometimes we even need __logic__ in our templates.  Something like Handlebars gives us `if` and `each` statements.
+If we need conditional/generative __logic__ in our templates, we can use something like Handlebar syntax:
 
 ```handlebars
 <div>
@@ -31,7 +31,7 @@ And sometimes we even need __logic__ in our templates.  Something like Handlebar
 </div>
 ```
 
-But once we start demanding something like function composition to help create/piece together larger templates, we may start feeling weird about inventing our own fully-capable language around HTML.  Perhaps there is a better way.
+Once templates get large, we start demanding more language features in our templates.  For example, templates benefit from function composition.  We can continue adding syntax to templates, but we may start feeling weird about inventing our own fully-capable language around HTML.  Perhaps there is a better way.
 
 ## Embracing a real language
 
