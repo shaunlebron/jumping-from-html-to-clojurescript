@@ -100,7 +100,7 @@ React.render(
 
 Alternatively, we can use [JSX Control
 Statements](https://github.com/valtech-au/jsx-control-statements) which
-override the nature of a JSX tag:
+overload the nature of a JSX tag:
 
 ```javascript
 React.render(
