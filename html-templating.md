@@ -237,8 +237,8 @@ Clojure is not built specifically for HTML-templating, of course.  Rather, it
 is a general-purpose language that embraces the fundamental nature of code as
 evaluated data, and __simple HTML-templating just falls out of that idea__.
 
-If this piques your interest, you can gain a more comprehensive understanding
-of it in the [ClojureScript Syntax in 15
+If this piques your interest, you can quickly gain a more comprehensive
+understanding of it in the [ClojureScript Syntax in 15
 minutes](https://github.com/shaunlebron/ClojureScript-Syntax-in-15-minutes)
 guide.
 
