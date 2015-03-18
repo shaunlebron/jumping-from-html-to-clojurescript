@@ -131,13 +131,11 @@ Incidentally, trees are often represented as nested lists in computer science, s
 
 The first element of every list is the name of the tag.  The second element can be a map of attributes for that tag.  The rest of the elements are child tags.
 
-Can we add logic to it somehow?  Using Javascript suffers from the same problems we saw in the previous section-- the awkwardness of the ternary operator and `map` function.  Is there a better way?
-
-----
+Can we add logic to it somehow?  Using Javascript suffers from the same problems we saw in the previous section-- the awkwardness of the ternary operator and `map` function.  Perhaps there is a better way.
 
 #### JSON+logic = ?
 
-Actually, the simplest thing we can do is to use a language that is __sort of like JSON__.  Notice the only difference is the lack of commas and colons:
+Actually, the simplest thing we can do is to use a language that is __sort of like JSON__.  Notice the lack of commas and colons:
 
 ```clojure
 ["div"
@@ -161,7 +159,7 @@ This language actually allows us to embed logic in our data.  In fact, logic is 
 
 Notice we have inserted the `if` conditional as a list with parens.  You can probably guess what it does, but you might be confused at why the distinction between logic and data has been blurred.  Well, this is already what Handlebars and JSX Control Statements are doing; they create custom data tags for logic.  Handlebars adds the `{{#each}} {{/each}}` tags, and JSX Control Statements creates adds the `<For> </For>` tags; logic as data.  Likewise, we're using an `if` list.
 
-This language is called Clojure.  Its syntax is a marriage of Lisp and JSON (sort of).  All paren lists are interpreted as code, with the first argument being the function name, and the rest as arguments.  Let's complete our example with a `for` loop:
+This language is called Clojure.  Its syntax is a marriage of Lisp and JSON (sort of).  All paren lists are interpreted as code, with the first argument being the function name, and the rest as arguments.  Let's complete our example with a `for` loop (simplified):
 
 ```clojure
 ["div"
@@ -173,3 +171,6 @@ This language is called Clojure.  Its syntax is a marriage of Lisp and JSON (sor
   )
 ]
 ```
+
+Clojure is a general-purpose language that embraces the fundamental nature of code as evaluated data, and the solution to simple HTML-templating just falls out of that idea.  It is a very well thought-out language, and you can gain a more comprehensive understanding of it in the [ClojureScript Syntax in 15 minutes](https://github.com/shaunlebron/ClojureScript-Syntax-in-15-minutes) guide.
+
