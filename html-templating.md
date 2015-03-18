@@ -31,13 +31,11 @@ If we need conditional/generative __logic__ in our templates, we can use somethi
 </div>
 ```
 
-Once templates get large, we start demanding more language features in our templates.  For example, templates benefit from function composition.  We can continue adding syntax to templates, but we may start feeling weird about inventing our own fully-capable language around HTML.  Perhaps there is a better way.
+Once templates get large, we start demanding more language features in our templates (e.g. function composition).  We can continue adding custom syntax to our templates, but we may start feeling weird about inventing our own fully-capable language around HTML.  Perhaps there is a better way.
 
 ## Embracing a real language
 
-The __React__ team from Facebook recognized the awkwardness of using a language on top of HTML when creating sufficiently complex templates, so they decided to generate HTML in Javascript, which was controversial...
-
-What they gained with the full power of JS, they lost in brevity:
+The __React__ team from Facebook recognized the awkwardness of using a language on top of HTML when creating sufficiently complex templates, so they made a controversial move to generate HTML inside of Javascript.
 
 ```javascript
 React.render(
@@ -46,7 +44,7 @@ React.render(
     React.createComponent("span", null, message)));
 ```
 
-They added an __optional sugar__ on top of JS called JSX, which allows you to use HTML with Mustache-like expressions inside them.
+What they gained with the full power of JS, they lost in brevity.  So they added an __optional sugar__ on top of JS called JSX, which allows you to use HTML with Mustache-like expressions inside them.
 
 ```javascript
 React.render(
