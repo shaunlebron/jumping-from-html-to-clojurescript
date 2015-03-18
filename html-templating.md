@@ -1,4 +1,4 @@
-## The evolution of HTML templating (or why you should be using Hiccups)
+## The evolution of HTML templating
 
 The following is a simple HTML example:
 
