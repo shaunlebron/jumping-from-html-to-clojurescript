@@ -122,7 +122,7 @@ So it doesn't seem unreasonable to represent this as a nested JSON arrays. (The 
 ```json
 ["div"
   ["img"
-    {src "hi.jpg"}]
+    {src: "hi.jpg"}]
   ["span"
     "Hello"]]
 ```
