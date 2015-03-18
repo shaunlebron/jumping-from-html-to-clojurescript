@@ -110,10 +110,14 @@ Let's go back to our simple HTML example:
 
 This is fundamentally just a tree of data, which we can represent with a nested bulleted list.
 
+----
+
 - __div__
   - __img__ (source=hi.jpg)
   - __span__
     - "Hello"
+
+----
 
 Incidentally, trees are often represented as nested lists in computer science, so let's imagine what it would look like as literal lists in JSON form:
 
