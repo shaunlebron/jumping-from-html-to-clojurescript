@@ -1,4 +1,4 @@
-# The evolution of HTML templating
+# HTML templating - a problem and solution
 
 Popular HTML templating solutions suffer some awkward, syntactic problems.  We will cover a brief history, with each section representing an idea that builds on the previous.  And we will end with a solution that we believe to be most useful.  Section topics follow:
 
