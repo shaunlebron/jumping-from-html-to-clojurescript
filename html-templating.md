@@ -108,16 +108,12 @@ Let's go back to our simple HTML example:
 </div>
 ```
 
-This is fundamentally just a tree of data, which we can represent with a nested bulleted list.  (Each element has a list of attributes and a list of children):
+This is fundamentally just a tree of data, which we can represent with a nested bulleted list.
 
 - __div__
-  - attributes: none
-  - children:
-    - __img__
-      - attributes:
-        - __src__: "hi.jpg"
-      - children: none
-    - __span__
-      - attributes: none
-      - children:
-        - "Hello"
+  - __img__
+    - attributes:
+      - src: "hi.jpg"
+  - __span__
+    - "Hello"
+
