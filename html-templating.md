@@ -133,7 +133,7 @@ The first element of every list is the name of the tag.  The second element can 
 
 This is a fundamental representation of HTML using the most popular literal data syntax in programming languages today.  Can we add conditional/generative logic to it somehow like we did in the previous sections? Using Javascript suffer the same problems as seen in the previous section with the ternary operator and `map` function.  Is there a better way?
 
-Actually, the simplest thing we can do is to use a language that is sort of like JSON.  In fact, you may hardly notice the difference (commas and colons are replaced with whitespace):
+Actually, the simplest thing we can do is to use a language that is __sort of like JSON__.  In fact, you may hardly notice the difference (commas and colons are replaced with whitespace):
 
 ```clojure
 ["div"
