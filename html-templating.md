@@ -143,7 +143,7 @@ Actually, the simplest thing we can do is to use a language that is sort of like
 ]
 ```
 
-Additionally, this language allows us to embed logic in our data.  In fact, the logic is represented as a new kind of data, a `()` list.
+Additionally, this language allows us to embed logic in our data.  In fact, the logic is represented as a new kind of list.
 
 ```clojure
 ["div"
