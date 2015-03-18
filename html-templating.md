@@ -143,7 +143,7 @@ Actually, the simplest thing we can do is to use a language that is __sort of li
 ]
 ```
 
-This language actually allows us to embed logic in our data.  In fact, logic is represented as a new kind of list.
+This language actually allows us to embed logic in our data.  In fact, logic is represented as a new kind of list:
 
 ```clojure
 ["div"
@@ -155,7 +155,9 @@ This language actually allows us to embed logic in our data.  In fact, logic is 
 ]
 ```
 
-We have inserted the `if` conditional into our template as a list.  But the only difference between the `[]` list and the `()` list is that the latter is treated as a function call that returns a value.  The first element of a `()` list is the function name to use, and the rest are its arguments. Let's try a `for` statement:
+Notice we have inserted the `if` conditional as a list with parens.  You can probably guess what it does, but you might be confused at why the distinction between logic and data has been blurred.  Well, this is already what Handlebars and JSX Control Statements are doing; they create custom data tags for logic.  Handlebars adds the `{{#each}} {{/each}}` tags, and JSX Control Statements creates adds the `<For> </For>` tags; logic as data.  Likewise, we're using an `if` list.
+
+This language is called Clojure.  Its syntax is a marriage of Lisp and JSON.  All paren lists are interpreted as code, with the first argument being the function name, and the rest as arguments.  Let's complete our example with a `for` loop:
 
 ```clojure
 ["div"
@@ -167,7 +169,3 @@ We have inserted the `if` conditional into our template as a list.  But the only
   )
 ]
 ```
-
-
-Should we use 
-Both data and code in a consistent, well-formed, extensible language.
