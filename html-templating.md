@@ -35,7 +35,7 @@ Once templates get large, we start demanding more language features in our templ
 
 ## Embracing a real language
 
-The __React__ team from Facebook recognized the awkwardness of using a language on top of HTML when creating sufficiently complex templates, so they made a controversial move to generate HTML inside of Javascript.
+The __React__ team from Facebook recognized the awkwardness of using a language on top of HTML when creating sufficiently complex templates, so they made a controversial move to generate HTML inside of Javascript (among other reasons related to virtual DOM construction):
 
 ```javascript
 React.render(
@@ -44,9 +44,10 @@ React.render(
     React.createComponent("span", null, message)));
 ```
 
-What they gained with the full power of JS, they lost in brevity.  So they added an __optional sugar__ on top of JS called JSX, which allows you to use HTML with Mustache-like expressions inside them.
+What they gained with the full power of JS, they lost in brevity.  So they added an __optional sugar__ on top of JS called JSX, which allows you to construct a virtual DOM more easily.  It is essentially allows us to write HTML inside JS, with embedded JS allowed in curly braces.
 
 ```javascript
+// this desugars into the previous code example
 React.render(
   <div>
     <img src={imageSource} />
@@ -54,10 +55,31 @@ React.render(
   </div>);
 ```
 
-There is currently a 50/50 mindshare among using JSX versus the usual JS calls.
+We can use Javascript's ternary expressions for conditionals and the native `map` function for sequence generation:
 
+```javascript
+React.render(
+  <div>
+    {imageSource ? <img src={imageSource} /> : null}
+    {messages.map(m => <span>{m}</span>)}
+  </div>);
+```
 
-## Could it be better?
+[JSX Control Statements](https://github.com/valtech-au/jsx-control-statements) offer simpler syntax by overriding the nature of a tag in JSX:
+
+```javascript
+React.render(
+  <div>
+    <If condition={imageSource}>
+      <img src={imageSource} />
+    </If>
+    <For each="m" of={messages}>
+      <span>{m}</span>
+    </For>
+  </div>);
+```
+
+## Returning to fundamentals to find simpler syntax
 
 Let's suppose we want to represent HTML as a data structure in some existing programming language instead of grafting one onto HTML.
 
