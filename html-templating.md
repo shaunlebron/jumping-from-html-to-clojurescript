@@ -111,9 +111,7 @@ Let's go back to our simple HTML example:
 This is fundamentally just a tree of data, which we can represent with a nested bulleted list.
 
 - __div__
-  - __img__
-    - attributes:
-      - src: "hi.jpg"
+  - __img__ (w/ src:"hi.jpg")
   - __span__
     - "Hello"
 
