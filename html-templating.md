@@ -11,7 +11,7 @@ The following is a simple HTML example:
 
 Sometimes, we want to inject __dynamic values__ into HTML.  This is commonly solved using a templating language like Mustache.
 
-```mustache
+```handlebars
 <div>
  <img src="{{imageSource}}">
  <span>{{message}}</span>
