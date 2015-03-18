@@ -1,7 +1,7 @@
 # HTML templating - a problem and solution
 
-We start with a simple idea of HTML templating and hope to walk you to a
-surprising idea.
+We hope to lead you to a surprising idea by starting with a simple idea of
+HTML templating.
 
 ### Extending HTML for templating
 
