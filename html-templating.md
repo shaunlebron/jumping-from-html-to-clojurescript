@@ -21,7 +21,7 @@ Sometimes, we want to inject __dynamic values__ into HTML.  This is commonly sol
 
 ```handlebars
 <div>
- <img src="{{imageSource}}">
+ <img src="{{imageSource}}" />
  <span>{{message}}</span>
 </div>
 ```
@@ -31,7 +31,7 @@ If we need conditional/generative __logic__ in our templates, we can use somethi
 ```handlebars
 <div>
  {{#if imageSource}}
-   <img src="{{imageSource}}">
+   <img src="{{imageSource}}" />
  {{/if}}
  {{#each messages}}
    <span>{{.}}</span>
@@ -103,12 +103,28 @@ React.render(
 
 __To review__, we gained the full power of a real language by _embedding_ HTML inside of Javascript.  But yet again, we are forced to add additional syntax to regain the brevity of traditional templates.  Perhaps there is a better way.
 
-## Returning to fundamentals to find simpler syntax
+## Simplicity through Fundamentals
 
-Let's suppose we want to represent HTML as a data structure in some existing programming language instead of grafting one onto HTML.
+Let's go back to our simple HTML example:
 
-In computer science, trees are often represented as nested arrays.
-
-```clojure
-[:div "Hello"]
+```html
+<div>
+  <img src="hi.jpg" />
+  <span>Hello</span>
+</div>
 ```
+
+This is fundamentally just a tree of data, which we can represent with a bulleted list:
+
+- __div__
+  - attributes: none
+  - children:
+    - __img__
+      - attributes:
+        - __src__: "hi.jpg"
+      - children: none
+    - __span__
+      - attributes: none
+      - children:
+        - "Hello"
+
