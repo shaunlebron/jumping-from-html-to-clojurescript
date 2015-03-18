@@ -129,7 +129,7 @@ Incidentally, trees are often represented as nested lists in computer science, s
 ]
 ```
 
-The first element of every list is the name of the tag.  The second element can be a map of attributes for that tag.  The rest of the elements are child tags. (Trees are commonly represented as nested lists in computer science.)
+The first element of every list is the name of the tag.  The second element can be a map of attributes for that tag.  The rest of the elements are child tags.
 
 So this is a fundamental representation of HTML using the most popular literal data syntax in programming languages today.  Can we add conditional/generative logic to it somehow like we did in the previous sections?  Well, there is actually a language that is sort of like JSON.  In fact, you may hardly notice the difference:
 
