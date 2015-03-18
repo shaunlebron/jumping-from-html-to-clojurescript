@@ -1,4 +1,4 @@
-# The struggle and resolution of HTML templating
+# Struggles with HTML templating
 
 We hope to cover a surprising idea about HTML templating by discussing some of
 its problems and existing solutions.
