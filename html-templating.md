@@ -35,7 +35,7 @@ If we need conditional/generative __logic__ in our templates, we can use somethi
 
 Once templates get large, we start demanding more language features in our templates.  For example, Handlebars allows [template chunks](http://handlebarsjs.com/#helpers) to allow a form of function composition.  But the point is that we can continue adding custom syntax to our templates, but we may start feeling weird about inventing our own fully-capable language around HTML.  Perhaps there is a better way.
 
-## Embedding HTML in JS
+### Embedding HTML in JS
 
 The __React__ team from Facebook recognized the awkwardness of using a language on top of HTML when creating sufficiently complex templates, so they made a controversial move to generate HTML inside of Javascript (among other reasons related to virtual DOM construction):
 
@@ -97,7 +97,7 @@ React.render(
 
 __To review__, we gained the full power of a real language by _embedding_ HTML inside of Javascript.  But yet again, we are forced to add additional syntax to regain the brevity of traditional templates.  Perhaps there is a better way.
 
-## Simplicity through Fundamentals
+### From first principles to simplicity
 
 Let's go back to our simple HTML example:
 
@@ -131,9 +131,11 @@ Incidentally, trees are often represented as nested lists in computer science, s
 
 The first element of every list is the name of the tag.  The second element can be a map of attributes for that tag.  The rest of the elements are child tags.
 
-This is a fundamental representation of HTML using the most popular literal data syntax in programming languages today.  Can we add conditional/generative logic to it somehow like we did in the previous sections? Using Javascript suffers from the same problems we saw in the previous section-- the awkwardness of the ternary operator and `map` function.  Is there a better way?
+Can we add logic to it somehow?  Using Javascript suffers from the same problems we saw in the previous section-- the awkwardness of the ternary operator and `map` function.  Is there a better way?
 
 ----
+
+#### JSON+logic = ?
 
 Actually, the simplest thing we can do is to use a language that is __sort of like JSON__.  Notice the only difference is the lack of commas and colons:
 
