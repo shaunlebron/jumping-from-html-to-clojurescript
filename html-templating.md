@@ -138,8 +138,8 @@ bulleted list.
 
 ----
 
-Incidentally, trees are often represented as nested lists, so let's imagine
-what it would look like as a literal list in JSON form:
+Trees are often represented as nested lists, so let's imagine what it would
+look like as a literal list in JSON form:
 
 ```json
 ["div",
@@ -152,9 +152,9 @@ what it would look like as a literal list in JSON form:
 First element of a list is the tag name.  Second element can be a map of tag
 attributes.  Rest of the elements are child tags.
 
-Can we add logic to it somehow?  Using Javascript suffers from the same
-problems we saw in the previous section-- the awkwardness of the ternary
-operator and `map` function.  Perhaps there is a better way.
+Can we add logic to this somehow?  Going the way of Javascript (e.g. ternaary
+operator and `map`) suffers from the same problems we saw in the previous
+section.  Perhaps there is a better way.
 
 #### JSON+logic = ?
 
