@@ -172,5 +172,5 @@ This language is called Clojure.  Its syntax is a marriage of Lisp and JSON (sor
 ]
 ```
 
-Clojure is a general-purpose language that embraces the fundamental nature of code as evaluated data, and the solution to simple HTML-templating just falls out of that idea.  It is a very well thought-out language, and you can gain a more comprehensive understanding of it in the [ClojureScript Syntax in 15 minutes](https://github.com/shaunlebron/ClojureScript-Syntax-in-15-minutes) guide.
+Clojure is a general-purpose language that embraces the fundamental nature of code as evaluated data, and a solution to simple HTML-templating just falls out of that idea.  If this piques your interest, you can gain a more comprehensive understanding of it in the [ClojureScript Syntax in 15 minutes](https://github.com/shaunlebron/ClojureScript-Syntax-in-15-minutes) guide.
 
