@@ -122,9 +122,9 @@ This is fundamentally just a tree of data, which we can represent with a nested 
 Incidentally, trees are often represented as nested lists in computer science, so let's imagine what it would look like as literal lists in JSON form:
 
 ```json
-["div"
-  ["img" {"src": "hi.jpg"}]
-  ["span"
+["div",
+  ["img", {"src": "hi.jpg"}]
+  ["span",
     "Hello"]
 ]
 ```
@@ -133,7 +133,7 @@ The first element of every list is the name of the tag.  The second element can 
 
 This is a fundamental representation of HTML using the most popular literal data syntax in programming languages today.  Can we add conditional/generative logic to it somehow like we did in the previous sections? Using Javascript suffer the same problems as seen in the previous section with the ternary operator and `map` function.  Is there a better way?
 
-Actually, the simplest thing we can do is to use a language that is sort of like JSON.  In fact, you may hardly notice the difference:
+Actually, the simplest thing we can do is to use a language that is sort of like JSON.  In fact, you may hardly notice the difference (commas and colons are replaced with whitespace):
 
 ```clojure
 ["div"
@@ -143,18 +143,31 @@ Actually, the simplest thing we can do is to use a language that is sort of like
 ]
 ```
 
-But this language allows us to embed logic in our data.  In fact, the logic is represented as data.
+Additionally, this language allows us to embed logic in our data.  In fact, the logic is represented _as_ data.
 
 ```clojure
 ["div"
   (if imageSource
     ["img" {"src" imageSource}]
   )
-  (for [m messages]
+  ["span"
+    "Hello"]
+]
+```
+
+We have inserted the `if` conditional into our template as a list.  But the only difference between the `[]` list and the `()` list is that the latter is treated as a function call that returns a value.  The first element of a `()` list is the function name to use, and the rest are its arguments. Let's try a `for` statement:
+
+```clojure
+["div"
+  (if imageSource
+    ["img" {"src" imageSource}]
+  )
+  (for m messages
     ["span" m]
   )
 ]
 ```
+
 
 Should we use 
 Both data and code in a consistent, well-formed, extensible language.
