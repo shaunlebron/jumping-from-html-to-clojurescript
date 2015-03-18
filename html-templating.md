@@ -1,6 +1,6 @@
 # The evolution of HTML templating
 
-HTML templating has evolved recently.  We will cover a brief history, with each section representing an idea that builds on the previous.  And we will end with a method that we believe to be most useful.  Section topics follow:
+Popular HTML templating solutions suffer some awkward, syntactic problems.  We will cover a brief history, with each section representing an idea that builds on the previous.  And we will end with a solution that we believe to be most useful.  Section topics follow:
 
 - Extending HTML for templating (the Handlebars way)
 - Embedding HTML in JS (the React way)
