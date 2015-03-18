@@ -1,4 +1,12 @@
-## The evolution of HTML templating
+# The evolution of HTML templating
+
+HTML templating has evolved recently.  We will cover a brief history, with each section representing an idea that builds on the previous.  And we will end with a method that we believe to be most useful.  Section topics follow:
+
+- Extending HTML for templating (the Handlebars way)
+- Embedding HTML in JS (the React way)
+- Simplicity through fundamentals (a new way)
+
+### Extending HTML for templating
 
 The following is a simple HTML example:
 
@@ -31,7 +39,7 @@ If we need conditional/generative __logic__ in our templates, we can use somethi
 </div>
 ```
 
-Once templates get large, we start demanding more language features in our templates (e.g. function composition).  We can continue adding custom syntax to our templates, but we may start feeling weird about inventing our own fully-capable language around HTML.  Perhaps there is a better way.
+Once templates get large, we start demanding more language features in our templates.  For example, Handlebars allows [template chunks](http://handlebarsjs.com/#helpers) to allow a form of function composition.  But the point is that we can continue adding custom syntax to our templates, but we may start feeling weird about inventing our own fully-capable language around HTML.  Perhaps there is a better way.
 
 ## Embracing a real language
 
