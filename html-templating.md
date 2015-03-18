@@ -117,10 +117,16 @@ This is fundamentally just a tree of data, which we can represent with a nested 
   - __span__
     - "Hello"
 
-So it doesn't seem unreasonable to represent this as a nested JSON arrays. (The JSON map is used for attributes).
+Incidentally, trees are often represented as nested lists in computer science, so let's imagine what it would look like as literal lists in JSON form:
 
 ```json
 ["div"
   ["img" {"src": "hi.jpg"}]
-  ["span" "Hello"]]
+  ["span"
+    "Hello"]
+]
 ```
+
+The first element of every list is the name of the tag.  The second element can be a map of attributes for that tag.  The rest of the elements are child tags. (Trees are commonly represented as nested lists in computer science.)
+
+Arguably, __we are representing our HTML in its most fundamental form__.  
