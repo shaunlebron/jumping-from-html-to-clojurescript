@@ -116,7 +116,8 @@ React.render(
 
 So, we gained the full power of a real language by _embedding_ HTML inside of
 Javascript.  But we find ourselves again adding more syntax, this time for
-brevity.  Perhaps there is already a language to meet these needs.
+brevity.  Is there a language that allows us to do this without adding a custom
+syntax?
 
 ### From first principles to simplicity
 
@@ -156,14 +157,14 @@ map of tag attributes.  Rest of the elements are child tags.
 
 Can we add __logic syntax__ to this somehow?  Going the way of Javascript (e.g.
 ternary operator and `map`) suffers from the same problems we saw in the
-previous section-- a lack of brevity.  And we're not trying to invent new
-syntax.
+previous section-- a lack of brevity.  And we're specificially trying to not
+invent new syntax.
 
 #### JSON+logic = ?
 
-There already exists a general purpose language that is like JSON, but with
-logic as well.  Let's first see the data.  Notice the lack of commas and
-colons:
+It turns out there already exists a general purpose language that is like JSON,
+but with logic as well.  Let's see an example with data first.  Notice the lack
+of commas and colons:
 
 ```clojure
 ["div"
