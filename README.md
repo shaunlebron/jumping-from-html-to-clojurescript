@@ -1,7 +1,7 @@
-# Struggles with HTML templating
+# A jump from HTML-templating to ClojureScript
 
-We hope to cover a surprising idea about HTML templating by discussing some of
-its problems and existing solutions.
+There is actually a pretty interesting path from HTML templating to
+ClojureScript.  So if you're interested in learning ClojureScript, read on!
 
 ### Extending HTML for templating
 
@@ -119,7 +119,7 @@ Javascript.  But we find ourselves again adding more syntax, this time for
 brevity.  Is there a language that allows us to do this without adding a custom
 syntax?
 
-### From first principles to simplicity
+### Redefining our data
 
 Let's go back to our simple HTML example:
 
@@ -160,7 +160,7 @@ ternary operator and `map`) suffers from the same problems we saw in the
 previous section-- a lack of brevity.  And we're specificially trying to not
 invent new syntax.
 
-#### JSON+logic = ?
+#### Adding logic
 
 It turns out there already exists a general purpose language that is like JSON,
 but with logic as well.  Let's see an example with data first.  Notice the lack
@@ -199,12 +199,13 @@ list.  Likewise, we're using an `if` list to represent a conditional.
 The only difference is that we didn't have to invent the `if` list syntax.  It
 was actually here all along in the language, with brevity and all.
 
-#### Clojure
+#### ClojureScript
 
-This language is called Clojure.  Its syntax is a marriage of Lisp and JSON
-(sort of).  All paren lists are interpreted as code, with the first argument
-being the function name, and the rest as arguments.  Let's complete our example
-with a `for` loop (simplified):
+This language is called Clojure, and its JavaScript target is called
+ClojureScript.  Its syntax is a marriage of Lisp and JSON (sort of).  All paren
+lists are interpreted as code, with the first argument being the function name,
+and the rest as arguments.  Let's complete our example with a `for` loop
+(simplified):
 
 ```clojure
 ["div"
@@ -238,8 +239,49 @@ Clojure is not built specifically for HTML-templating, of course.  Rather, it
 is a general-purpose language that embraces the fundamental nature of code as
 evaluated data, and __simple HTML-templating just falls out of that idea__.
 
-If this piques your interest, you can quickly gain a more comprehensive
-understanding of it in the [ClojureScript Syntax in 15
-minutes](https://github.com/shaunlebron/ClojureScript-Syntax-in-15-minutes)
-guide.
+#### Getting some details out of the way
+
+By the way, this templating pattern is the popular "Hiccup"-style for
+generating DOM nodes/strings.  The following libraries use it:
+
+- [Hiccup] and [Hiccups] both generate __DOM strings__ for Clojure and ClojureScript, respectively
+- [Crate] and [Dommy] generate actual __DOM nodes__ instead of strings
+- [Sablono] generates React __virtual DOM nodes__
+- [Reagent] is a React wrapper that also generates its own __virtual DOM nodes__
+
+Oh, and it actually looks like this.  Keywords are used instead of strings for
+the tag names.
+
+```clojure
+[:div
+  [:img {"src" "hi.jpg"}]
+  [:span "Hello"]]
+```
+
+And Lispers don't leave trailing delimiters on their own line.
+
+```clojure
+(html
+  [:div
+    (if imageSource
+      [:img {"src" imageSource}])
+    (for [m messages]
+      [:span m])])
+```
+
+#### More examples
+
+- TODO: too simple, need more real examples
+
+----
+
+To learn more about the syntax, you can check out [ClojureScript Syntax in 15
+minutes](https://github.com/shaunlebron/ClojureScript-Syntax-in-15-minutes).
+
+[Hiccup]: https://github.com/weavejester/hiccup
+[Hiccups]: https://github.com/teropa/hiccups
+[Crate]: https://github.com/ibdknox/crate
+[Dommy]: https://github.com/Prismatic/dommy
+[Sablono]: https://github.com/r0man/sablono
+[Reagent]: https://github.com/reagent-project/reagent
 
