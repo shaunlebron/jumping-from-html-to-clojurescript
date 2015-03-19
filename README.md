@@ -1,7 +1,13 @@
-# A jump from HTML-templating to ClojureScript
+# Using HTML to learn ClojureScript
+
+__NOTE: this is still a very rough draft of an idea I'm trying to iron out__
 
 There is actually a pretty interesting path from HTML templating to
 ClojureScript.  So if you're interested in learning ClojureScript, read on!
+
+We will first talk about frustrations with the current state of HTML-templating
+in the JS community.  And we will look at an alternative that quickly became
+the status quo in the ClojureScript community.
 
 ### Extending HTML for templating
 
