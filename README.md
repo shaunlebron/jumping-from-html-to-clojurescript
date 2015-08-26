@@ -1,6 +1,6 @@
 # Using HTML to learn ClojureScript
 
-__NOTE: this is still a very rough draft of an idea I'm trying to iron out__
+_or why JSX does not have templating logic_
 
 There is actually a pretty interesting path from HTML templating to
 ClojureScript.  So if you're interested in learning ClojureScript, read on!
