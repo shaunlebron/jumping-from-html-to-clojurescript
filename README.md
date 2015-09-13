@@ -61,9 +61,9 @@ reasons related to virtual DOM construction):
 
 ```javascript
 React.render(
-  React.createComponent("div", null,
-    React.createComponent("img", {src: imageSource}),
-    React.createComponent("span", null, message)));
+  React.createElement("div", null,
+    React.createElement("img", {src: imageSource}),
+    React.createElement("span", null, message)));
 ```
 
 For brevity, they added an __optional sugar__ on top of JS called JSX,
