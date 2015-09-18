@@ -245,44 +245,189 @@ Clojure is not built specifically for HTML-templating, of course.  Rather, it
 is a general-purpose language that embraces the fundamental nature of code as
 evaluated data, and __simple HTML-templating just falls out of that idea__.
 
-#### Getting some details out of the way
+The popular templating style we just described is known as [Hiccup](#hiccup-style-templating)
+and is the status quo for templating in ClojureScript.
 
-By the way, this templating pattern is the popular "Hiccup"-style for
-generating DOM nodes/strings.  The following libraries use it:
+#### In Practice
+
+We left this out for simplicity, but _keywords_ are used instead of strings for
+the tag names and attributes (e.g. `:div`, `:img`):
+
+```clojure
+[:div
+  [:img {:src "hi.jpg"}]
+  [:span "Hello"]]
+```
+
+And this convention is to never leave closing delimiters on their own line:
+
+```clojure
+;; conventional ClojureScript formatting
+(html
+  [:div
+    (if imageSource
+      [:img {:src imageSource}])
+    (for [m messages]
+      [:span m])])
+```
+
+It's also worth mentioning that [Hoplon] uses a different syntax with all
+elements as idiomatic functions.  `[:div ...]` -> `(div ...)`
+
+```clojure
+(div
+  (if imageSource
+    (img :src imageSource))
+  (for [m messages]
+    (span m)))
+```
+
+[Hoplon]:http://hoplon.io/
+
+Whatever way you represent the elements in ClojureScript, its notions are clear
+and consistent with the rest of the language.  Syntax interpretation is a
+matter of knowing how a function will interpret its arguments, which can only
+take the shape of literal data.
+
+But maybe too many parentheses?
+
+### Why not indent? (e.g. Haml, Slim, Jade)
+
+Nobody likes large amounts of unimportant stuff lying around in code, like
+parentheses or closing tags. So it's no wonder that other popular templating
+languages have eliminated these redundancies through enforced indentation, and
+optional delimiting.
+
+Afterall, indentation is the natural way that we represent nested lists (as we
+showed before):
+
+- __div__
+  - __if__ imageSource
+    - __img__ (source=imageSource)
+  - __for__ m in messages
+    - __span__
+      - m
+
+Interpreting indentation as nesting while allowing optional delimiters for
+inlining is a good approach. But that's only half the problem.  Each templating
+language must deduce the _types_ of elements if it is to interpret them
+correctly:
+
+- html tags: __div__, __img__, __span__
+- logic controls: __if__, __for__
+- computed values: __imageSource__, __messages__, __m__
+
+We will see concrete examples from each language, but it is my opinion that
+removal of delimiters pulls the proverbial rug out from under your feet.  What
+you gained from simpler representation of your program's _structure_, you have
+lost in the simplicity of your program's _semantics_, necessitating in the use
+of extra syntax in what is a deceptively simple at first glance, but is often
+wholly complex and non-composable in larger examples.  We explore this in detail
+after the examples.
+
+---
+
+__[ClojureScript, indented]__ is purely a thought experiment that erases the
+delimiters ([actually attempted here]).  Since it is already indented by
+convention, this new form appears as an indentation-based language. So why
+include the parentheses at all?
+
+[actually attempted here]:https://github.com/boxed/indent-clj
+
+```clojure
+;; ClojureScript, delimiters removed
+:div
+  if imageSource
+    :img {:src imageSource}
+  for [m messages]
+    :span m
+```
+
+We _convert this example_ to the most popular indented template languages next
+to see its implications.
+
+---
+
+__[Haml]__ is used in the Ruby community:
+
+```haml
+-# Haml
+%div
+  - if imageSource
+    %img{:src => imageSource}
+  - messages.each do |m|
+    %span= m
+```
+
+- `%` denotes tags.
+- Ruby map notation for tag attributes.
+- `-` for embedded Ruby logic.
+- `=` after a tag denotes Ruby evaluation.
+
+[Haml]:http://haml.info/
+
+---
+
+__[Slim]__ is also used in the Ruby community, and perhaps looks simpler:
+
+```slim
+/ Slim
+div
+  - if imageSource
+    img src=imageSource
+  - messages.each do |m|
+    span = m
+```
+
+- Plain words at start of line denote tags.
+- Space-delimited `key=value` pairs for tag attributes.
+- `-` for embedded Ruby logic.
+- `=` after a tag denotes Ruby evaluation
+
+[Slim]:http://slim-lang.com/
+
+---
+
+__[Jade]__ is a dominant version in the JS community:
+
+```jade
+// Jade
+div
+  if imageSource
+    img(src=imageSource)
+  each m in messages
+    span= m
+```
+
+- Plain words at start of line denote tags or special logic `if`, `each`, etc.
+- `(key=value, ...)` pairs for tag attributes
+- `=` after a tag denotes JS evaluation
+
+[Jade]:http://jade-lang.com/
+
+---
+
+TODO: conclusions by comparing syntax of evaluation semantics, and compare
+to general purpose semantics of cljs
+
+---
+
+## Appendix
+
+### ClojureScript Syntax in 15 Minutes
+
+To learn more about the syntax, you can check out [ClojureScript Syntax in 15
+minutes](https://github.com/shaunlebron/ClojureScript-Syntax-in-15-minutes).
+
+### Hiccup-style templating
+
+The popular templating pattern used in Clojure is called "Hiccup"-style.  You
+can use it through the following libraries:
 
 - [Hiccup] and [Hiccups] both generate __DOM strings__ for Clojure and ClojureScript, respectively
 - [Crate] and [Dommy] generate actual __DOM nodes__ instead of strings
 - [Sablono] generates React __virtual DOM nodes__
 - [Reagent] is a React wrapper that also generates its own __virtual DOM nodes__
-
-Oh, and it actually looks like this.  Keywords are used instead of strings for
-the tag names.
-
-```clojure
-[:div
-  [:img {"src" "hi.jpg"}]
-  [:span "Hello"]]
-```
-
-And Lispers don't leave trailing delimiters on their own line.
-
-```clojure
-(html
-  [:div
-    (if imageSource
-      [:img {"src" imageSource}])
-    (for [m messages]
-      [:span m])])
-```
-
-#### More examples
-
-- TODO: too simple, need more real examples
-
-----
-
-To learn more about the syntax, you can check out [ClojureScript Syntax in 15
-minutes](https://github.com/shaunlebron/ClojureScript-Syntax-in-15-minutes).
 
 [Hiccup]: https://github.com/weavejester/hiccup
 [Hiccups]: https://github.com/teropa/hiccups
