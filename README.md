@@ -296,10 +296,8 @@ But maybe too many parentheses?
 Nobody likes large amounts of unimportant stuff lying around in code, like
 parentheses or closing tags. So it's no wonder that other popular templating
 languages have eliminated these redundancies through enforced indentation, and
-optional delimiting.
-
-Afterall, indentation is the natural way that we represent nested lists (as we
-showed before):
+optional delimiting.  Afterall, indentation is the natural way that we
+represent nested lists (as we showed before):
 
 - __div__
   - __if__ imageSource
@@ -308,43 +306,15 @@ showed before):
     - __span__
       - m
 
-Interpreting indentation as nesting while allowing optional delimiters for
-inlining is a good approach. But that's only half the problem.  Each templating
-language must deduce the _types_ of elements if it is to interpret them
-correctly:
+Deducing structure through indentation makes sense, but we must also deduce the
+_types_ of elements to prevent ambiguity:
 
 - html tags: __div__, __img__, __span__
 - logic controls: __if__, __for__
 - computed values: __imageSource__, __messages__, __m__
 
-We will see concrete examples from each language, but it is my opinion that
-removal of delimiters pulls the proverbial rug out from under your feet.  What
-you gained from simpler representation of your program's _structure_, you have
-lost in the simplicity of your program's _semantics_, necessitating in the use
-of extra syntax in what is a deceptively simple at first glance, but is often
-wholly complex and non-composable in larger examples.  We explore this in detail
-after the examples.
-
----
-
-__[ClojureScript, indented]__ is purely a thought experiment that erases the
-delimiters ([actually attempted here]).  Since it is already indented by
-convention, this new form appears as an indentation-based language. So why
-include the parentheses at all?
-
-[actually attempted here]:https://github.com/boxed/indent-clj
-
-```clojure
-;; ClojureScript, delimiters removed
-:div
-  if imageSource
-    :img {:src imageSource}
-  for [m messages]
-    :span m
-```
-
-We _convert this example_ to the most popular indented template languages next
-to see its implications.
+Let's see how the popular indentation-based templating languages deal with
+ambiguity of element types:
 
 ---
 
@@ -407,8 +377,18 @@ div
 
 ---
 
+Each language has its own syntax for dealing with how elements are evaluated.
+
 TODO: conclusions by comparing syntax of evaluation semantics, and compare
 to general purpose semantics of cljs
+
+If we wish to get the benefits of a general purpose language (with consistent
+evaluation semantics) and the conciseness of indentation, we can use
+ClojureScript with an upcoming editor feature called [parinfer], which uses
+indentation to infer structure, and shows proper delimiters without sacrificing
+readability for ambiguity.
+
+[parinfer]:https://github.com/shaunlebron/parinfer
 
 ---
 

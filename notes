@@ -81,3 +81,34 @@ for features.
 
 What you see is what you get in ClojureScript, and there aren't a lot of other
 features that sneak up on you. It's all internally consistent.
+
+
+We will see concrete examples from each language, but it is my opinion that
+removal of delimiters pulls the proverbial rug out from under your feet.  What
+you gained from simpler representation of your program's _structure_, you have
+lost in the simplicity of your program's _semantics_, necessitating in the use
+of extra syntax in what is a deceptively simple at first glance, but is often
+wholly complex and non-composable in larger examples.  We explore this in detail
+after the examples.
+
+---
+
+__[ClojureScript, indented]__ is purely a thought experiment that erases the
+delimiters ([actually attempted here]).  Since it is already indented by
+convention, this new form appears as an indentation-based language. So why
+include the parentheses at all?
+
+[actually attempted here]:https://github.com/boxed/indent-clj
+
+```clojure
+;; ClojureScript, delimiters removed
+:div
+  if imageSource
+    :img {:src imageSource}
+  for [m messages]
+    :span m
+```
+
+We _convert this example_ to the most popular indented template languages next
+to see its implications.
+
