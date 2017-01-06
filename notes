@@ -1,0 +1,114 @@
+
+So the realization of looking at these different templating languages is that
+they were created on the principle of indentation to achieve simple appearance,
+and then tried fitting the language with special functions and sugars for
+
+ClojureScript (Lisp) started from the first principles of building a flexible
+language that can represent the nature of our code as 
+
+We don't focus on parentheses when we're reading code, we see the indentation.
+Doing away with these parentheses would mean the language would lose many of
+the aforementioned properties. And it's an engineers practice to weigh and
+balance properties like this.
+
+
+In fact, Lisp was only intended as an internal notation for the compiler, but when its
+nicer [M-expression] sugar was delayed, something happened-- everyone started
+preferring the consistency and power of the original notation.
+
+safety net:
+- flexible
+- consistent
+- clear
+- strong
+- ugly?
+
+There is no perfect solution, something has to give.
+
+
+### NOTES
+
+Dismissing Lisp in this situation is like seeing the head of the iceberg,
+
+Excessive parentheses is a strong force against the ClojureScript newcomer,
+and this fear is further exacerbated by a seeming lack of popularity, confirming
+the fear and discouraging learning.
+
+With that in mind, the onus of educators is to combat these natural aversions
+by creating stepping stones of familiar ideas.  That is the purpose of this
+article.
+
+
+to stop fighting for beauty, and accept that representing our code as the data
+that it is affords us these benefits, and that coupled with stockholm syndrome
+experienced in every langauge means that its appearance won't even bother
+us anymore.
+
+MORE ON STOCKHOLM SYNDROME
+
+|          | PROS        | CONS         |
+|----------|-------------|--------------|
+| JS       | Familiar    | but Limiting |  <--- don't know what you're missing?
+| Jade/JSX |             |              |      (or do you... look at JSX, look at Jade, these are things that fundamentally should not exist, we don't invent new technologies for general purpose operations.
+|----------|-------------|--------------|       separation of concerns is not about different technologies)
+|----------|-------------|--------------|
+| CLJS     | Power       | Unfamiliar   |  <--- or not just unfamiliar but maybe ugly?
+|          | Consistency |              |       (stockholm syndrome?)
+|          | Simple      |              |
+
+So, given that the stockholm syndrome makes us look past most of the CONS of
+any language, which language would you measure to be better?
+
+|          | PROS        | CONS         |
+|----------|-------------|--------------|
+| JS       | Familiar    | but Limiting |
+| Jade/JSX | Popular     |              |  <--- Popular, big community, big support
+|----------|-------------|--------------|
+|----------|-------------|--------------|
+| CLJS     | Power       | Unfamiliar   |
+|          | Consistency | Unpopular    |  <--- Smaller community
+|          | Simple      |              |
+
+But we left out a column, and this is popularity:
+
+
+Keeping them balance is a job well performed by any editor, especially with
+"paredit".
+
+I implore you to read the syntax references for these templating languages.
+much of the facade of simplicity in a language become overwhelmed by more syntax
+for features.
+
+What you see is what you get in ClojureScript, and there aren't a lot of other
+features that sneak up on you. It's all internally consistent.
+
+
+We will see concrete examples from each language, but it is my opinion that
+removal of delimiters pulls the proverbial rug out from under your feet.  What
+you gained from simpler representation of your program's _structure_, you have
+lost in the simplicity of your program's _semantics_, necessitating in the use
+of extra syntax in what is a deceptively simple at first glance, but is often
+wholly complex and non-composable in larger examples.  We explore this in detail
+after the examples.
+
+---
+
+__[ClojureScript, indented]__ is purely a thought experiment that erases the
+delimiters ([actually attempted here]).  Since it is already indented by
+convention, this new form appears as an indentation-based language. So why
+include the parentheses at all?
+
+[actually attempted here]:https://github.com/boxed/indent-clj
+
+```clojure
+;; ClojureScript, delimiters removed
+:div
+  if imageSource
+    :img {:src imageSource}
+  for [m messages]
+    :span m
+```
+
+We _convert this example_ to the most popular indented template languages next
+to see its implications.
+
